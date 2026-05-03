@@ -568,7 +568,7 @@
           name: "Aqsa Vasi",
           title: "Registered Physiotherapist",
           initials: "AV",
-          link: "https://portal.collegept.org/en-US/public-register/display-member-contact/?id=bfaa7524-3117-eb11-a813-000d3af427b4",
+          registerLink: "https://portal.collegept.org/en-US/public-register/display-member-contact/?id=bfaa7524-3117-eb11-a813-000d3af427b4",
           summary: "Aqsa has experience in hospitals, rehabilitation centers, and private clinics. Her areas of interest include musculoskeletal injuries, assessment, personalized treatment planning, joint and soft tissue mobilization, neural tissue mobilization, exercise therapy, K taping, aerobic exercise, fitness training, and electrotherapy."
         },
         {
@@ -639,6 +639,7 @@
               <h3>${provider.name}</h3>
               <span class="badge">${provider.title}</span>
               <p>${provider.summary}</p>
+              ${provider.registerLink ? `<p style="margin-top:10px;"><a href="${provider.registerLink}" target="_blank" style="color: var(--primary); font-weight:600;">View Public Register</a></p>` : ""}
             </div>
           </article>
         `)
@@ -666,4 +667,3 @@
   </script>
 </body>
 </html>
-
