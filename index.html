@@ -1,1 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VasiPhysio | Physiotherapy Clinic</title>
+  <meta name="description" content="VasiPhysio physiotherapy clinic website with services, providers, contact details, and future appointment booking readiness." />
+
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --secondary: #ecfeff;
+      --accent: #f59e0b;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --light: #f8fafc;
+      --border: #e5e7eb;
+      --shadow: 0 12px 30px rgba(15, 118, 110, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 76px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 86px 0 70px;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ecfeff 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: #0f172a;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+
+    .quick-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .quick-list div {
+      padding: 14px;
+      background: var(--secondary);
+      border-radius: 14px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--secondary);
+      border-radius: 14px;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .provider-card {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--primary), #67e8f9);
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .badge {
+      display: inline-block;
+      margin: 8px 0 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--secondary);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-info {
+      background: var(--primary-dark);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .contact-info p {
+      color: rgba(255, 255, 255, 0.85);
+      margin: 10px 0 18px;
+    }
+
+    .contact-row {
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .map-placeholder {
+      min-height: 330px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #e0f2fe, #ffffff);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+    }
+
+    .future {
+      background: #0f172a;
+      color: var(--white);
+      border-radius: 30px;
+      padding: 42px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .future p {
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 720px;
+    }
+
+    footer {
+      padding: 28px 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .contact-wrap,
+      .providers-grid,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 18px 4%;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .provider-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="Clinic home">
+        <span class="logo-mark" id="logoInitials">VP</span>
+        <span id="clinicNameHeader">VasiPhysio</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#providers">Providers</a>
+        <a href="#contact">Contact</a>
+        <a href="#booking" class="btn">Book Soon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Physiotherapy • Rehab • Movement</div>
+          <h1 id="heroTitle">Helping you move better, recover stronger, and feel confident again.</h1>
+          <p id="heroDescription">
+            VasiPhysio provides patient-focused physiotherapy care for pain relief, injury recovery, mobility improvement, and long-term wellness.
+          </p>
+          <div class="hero-actions">
+            <a href="#services" class="btn">Explore Services</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Clinic highlights">
+          <h2>Personalized physiotherapy care</h2>
+          <p>Assessment-driven treatment plans designed around each patient’s pain, function, goals, and lifestyle.</p>
+          <div class="quick-list" id="quickHighlights"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Our Services</h2>
+          <p>These are sample physiotherapy services for the first version. You can update the service list directly in the JavaScript configuration.</p>
+        </div>
+        <div class="grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section id="providers">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Meet Our Providers</h2>
+          <p>Provider details are editable and can be expanded as the clinic grows.</p>
+        </div>
+        <div class="providers-grid" id="providersGrid"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-info">
+          <h2>Contact Us</h2>
+          <p>Update the address, phone number, email, and hours in the website configuration.</p>
+          <div class="contact-row">
+            <strong>Address</strong>
+            <p id="clinicAddress"></p>
+          </div>
+          <div class="contact-row">
+            <strong>Phone</strong>
+            <p><a id="clinicPhone" href="#"></a></p>
+          </div>
+          <div class="contact-row">
+            <strong>Email</strong>
+            <p><a id="clinicEmail" href="#"></a></p>
+          </div>
+          <div class="contact-row">
+            <strong>Hours</strong>
+            <p id="clinicHours"></p>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <div>
+            <h3>Map Placeholder</h3>
+            <p>Later, replace this section with a Google Maps embed once the clinic address is finalized.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="container">
+        <div class="future">
+          <div>
+            <h2>Future Feature: Online Appointment Booking</h2>
+            <p>
+              This version is ready for a future booking flow. Later you can add a booking form, calendar integration, appointment slots, provider selection, and email confirmations.
+            </p>
+          </div>
+          <a href="#contact" class="btn">Request Appointment</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p id="footerText"></p>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      CHANGEABLE WEBSITE DATA
+      Update this object when the clinic name, services, providers, address, or phone number changes.
+    */
+    const clinicConfig = {
+      name: "VasiPhysio",
+      tagline: "Helping you move better, recover stronger, and feel confident again.",
+      description: "VasiPhysio provides patient-focused physiotherapy care for pain relief, injury recovery, mobility improvement, and long-term wellness.",
+      contact: {
+        address: "123 Wellness Avenue, Brampton, ON L7A 0A0",
+        phone: "+1 (905) 000-0000",
+        email: "info@vasiphysio.ca",
+        hours: "Monday to Friday: 9:00 AM - 7:00 PM | Saturday: 10:00 AM - 3:00 PM"
+      },
+      highlights: [
+        "One-on-one assessments",
+        "Personalized recovery plans",
+        "Evidence-informed treatment"
+      ],
+      services: [
+        {
+          icon: "🦴",
+          title: "Physiotherapy Assessment",
+          description: "Detailed movement, pain, strength, and mobility assessment to understand the root cause of your concern."
+        },
+        {
+          icon: "💪",
+          title: "Exercise Therapy",
+          description: "Customized strengthening, stretching, and mobility programs to support recovery and prevent re-injury."
+        },
+        {
+          icon: "🤲",
+          title: "Manual Therapy",
+          description: "Hands-on techniques for joint mobility, soft tissue tightness, pain relief, and improved function."
+        },
+        {
+          icon: "🏃",
+          title: "Sports Injury Rehab",
+          description: "Rehabilitation plans for sprains, strains, overuse injuries, and return-to-sport conditioning."
+        },
+        {
+          icon: "🧍",
+          title: "Posture & Mobility Care",
+          description: "Support for posture-related pain, workplace strain, stiffness, and mobility limitations."
+        },
+        {
+          icon: "🩹",
+          title: "Post-Surgical Rehab",
+          description: "Guided rehabilitation after surgery to restore strength, movement, confidence, and daily function."
+        }
+      ],
+      providers: [
+        {
+          name: "Aqsa Vasi",
+          title: "Registered Physiotherapist",
+          initials: "AV",
+          summary: "Aqsa has experience in hospitals, rehabilitation centers, and private clinics. Her areas of interest include musculoskeletal injuries, assessment, personalized treatment planning, joint and soft tissue mobilization, neural tissue mobilization, exercise therapy, K taping, aerobic exercise, fitness training, and electrotherapy."
+        },
+        {
+          name: "Mohammadrahil Shaikh",
+          title: "Registered Physiotherapist",
+          initials: "MS",
+          summary: "Mohammadrahil has more than 10 years of experience with orthopaedic and sports injury populations. His approach includes patient education, joint and soft tissue mobilization, taping, individualized exercise planning, vestibular rehabilitation, concussion rehabilitation, gait analysis, and manual therapy concepts."
+        }
+      ]
+    };
+
+    function getInitials(name) {
+      return name
+        .split(" ")
+        .map(part => part.charAt(0))
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
+    }
+
+    function renderClinicInfo() {
+      document.title = `${clinicConfig.name} | Physiotherapy Clinic`;
+      document.getElementById("clinicNameHeader").textContent = clinicConfig.name;
+      document.getElementById("logoInitials").textContent = getInitials(clinicConfig.name);
+      document.getElementById("heroTitle").textContent = clinicConfig.tagline;
+      document.getElementById("heroDescription").textContent = clinicConfig.description;
+      document.getElementById("clinicAddress").textContent = clinicConfig.contact.address;
+
+      const phoneLink = document.getElementById("clinicPhone");
+      phoneLink.textContent = clinicConfig.contact.phone;
+      phoneLink.href = `tel:${clinicConfig.contact.phone.replace(/[^+\d]/g, "")}`;
+
+      const emailLink = document.getElementById("clinicEmail");
+      emailLink.textContent = clinicConfig.contact.email;
+      emailLink.href = `mailto:${clinicConfig.contact.email}`;
+
+      document.getElementById("clinicHours").textContent = clinicConfig.contact.hours;
+      document.getElementById("footerText").textContent = `© ${new Date().getFullYear()} ${clinicConfig.name}. All rights reserved.`;
+    }
+
+    function renderHighlights() {
+      const quickHighlights = document.getElementById("quickHighlights");
+      quickHighlights.innerHTML = clinicConfig.highlights
+        .map(highlight => `<div>✓ ${highlight}</div>`)
+        .join("");
+    }
+
+    function renderServices() {
+      const servicesGrid = document.getElementById("servicesGrid");
+      servicesGrid.innerHTML = clinicConfig.services
+        .map(service => `
+          <article class="card">
+            <div class="service-icon" aria-hidden="true">${service.icon}</div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+          </article>
+        `)
+        .join("");
+    }
+
+    function renderProviders() {
+      const providersGrid = document.getElementById("providersGrid");
+      providersGrid.innerHTML = clinicConfig.providers
+        .map(provider => `
+          <article class="card provider-card">
+            <div class="avatar" aria-hidden="true">${provider.initials}</div>
+            <div>
+              <h3>${provider.name}</h3>
+              <span class="badge">${provider.title}</span>
+              <p>${provider.summary}</p>
+            </div>
+          </article>
+        `)
+        .join("");
+    }
+
+    function setupMobileMenu() {
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const navLinks = document.getElementById("navLinks");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => navLinks.classList.remove("active"));
+      });
+    }
+
+    renderClinicInfo();
+    renderHighlights();
+    renderServices();
+    renderProviders();
+    setupMobileMenu();
+  </script>
+</body>
+</html>
 
