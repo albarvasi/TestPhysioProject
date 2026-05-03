@@ -257,37 +257,84 @@
     .providers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 28px;
     }
 
     .provider-card {
+      position: relative;
+      overflow: hidden;
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 20px;
+      grid-template-columns: 96px 1fr;
+      gap: 22px;
       align-items: start;
+      padding: 28px;
+    }
+
+    .provider-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), #67e8f9);
+    }
+
+    .provider-card:hover .avatar {
+      transform: scale(1.04);
     }
 
     .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, var(--primary), #67e8f9);
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       display: grid;
       place-items: center;
       color: var(--white);
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 900;
+      box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22);
+      transition: transform 0.2s ease;
+    }
+
+    .provider-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0 14px;
     }
 
     .badge {
       display: inline-block;
-      margin: 8px 0 12px;
-      padding: 6px 10px;
+      padding: 7px 11px;
       border-radius: 999px;
       background: var(--secondary);
       color: var(--primary-dark);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
+    }
+
+    .verified-badge {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .provider-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .provider-link:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
     }
 
     .contact-wrap {
@@ -521,8 +568,8 @@
       tagline: "Helping you move better, recover stronger, and feel confident again.",
       description: "VasiPhysio provides patient-focused physiotherapy care for pain relief, injury recovery, mobility improvement, and long-term wellness.",
       contact: {
-        address: "5 Circus Cres, Brampton, ON, L7A 5E3",
-        phone: "+1 (647) 863-4269",
+        address: "123 Wellness Avenue, Brampton, ON L7A 0A0",
+        phone: "+1 (905) 000-0000",
         email: "info@vasiphysio.ca",
         hours: "Monday to Friday: 9:00 AM - 7:00 PM | Saturday: 10:00 AM - 3:00 PM"
       },
@@ -637,9 +684,12 @@
             <div class="avatar" aria-hidden="true">${provider.initials}</div>
             <div>
               <h3>${provider.name}</h3>
-              <span class="badge">${provider.title}</span>
+              <div class="provider-meta">
+                <span class="badge">${provider.title}</span>
+                ${provider.registerLink ? `<span class="badge verified-badge">Public Register Available</span>` : ""}
+              </div>
               <p>${provider.summary}</p>
-              ${provider.registerLink ? `<p style="margin-top:10px;"><a href="${provider.registerLink}" target="_blank" style="color: var(--primary); font-weight:600;">View Public Register</a></p>` : ""}
+              ${provider.registerLink ? `<a class="provider-link" href="${provider.registerLink}" target="_blank" rel="noopener noreferrer">View Public Register →</a>` : ""}
             </div>
           </article>
         `)
